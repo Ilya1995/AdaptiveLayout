@@ -1,0 +1,27 @@
+.header {
+    height: 100px;
+    padding: 10px;
+    color: #333;
+    font-family: Open Sans,Arial,Helvetica,sans-serif;
+}
+
+.aut-reg {
+    float: right;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.input-serch {
+    /*display: block;*/
+    /*margin: 0 auto;*/
+    /*text-align: center;*/
+    position: relative;
+    width: auto;
+    padding-top: 23px;
+    z-index: 10;
+}
+
+.logo {
+    float: left;
+    cursor: pointer;
+}
