@@ -1,27 +1,100 @@
 .header {
-    height: 100px;
-    padding: 10px;
-    color: #333;
-    font-family: Open Sans,Arial,Helvetica,sans-serif;
+    height: 60px;
+    /*padding: 10px;*/
+    /*color: #333;*/
+    /*font-family: Open Sans,Arial,Helvetica,sans-serif;*/
 }
 
-.aut-reg {
+/*.aut-reg {*/
+    /*float: right;*/
+    /*cursor: pointer;*/
+    /*padding: 10px;*/
+/*}*/
+
+/*.input-serch {*/
+    /*!*display: block;*!*/
+    /*!*margin: 0 auto;*!*/
+    /*!*text-align: center;*!*/
+    /*position: relative;*/
+    /*width: auto;*/
+    /*padding-top: 23px;*/
+    /*z-index: 10;*/
+/*}*/
+
+/*.logo {*/
+    /*float: left;*/
+    /*cursor: pointer;*/
+/*}*/
+
+.navigation-top {
+    position: fixed;
+    background: white;
+    height: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+}
+
+.navigation {
+    position: fixed;
+    background: #333;
+    height: 60px;
+    left: 0;
+    right: 0;
+    top: 60px;
+    z-index: 5100;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+}
+
+.navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 50px 0 50px;
     float: right;
-    cursor: pointer;
-    padding: 10px;
 }
 
-.input-serch {
-    /*display: block;*/
-    /*margin: 0 auto;*/
-    /*text-align: center;*/
+.navigation-li {
+    display: block;
+    background: left center no-repeat;
+    transition: width .2s ease-out 0s;
+    color: white;
+    line-height: 60px;
+}
+
+.navigation-li span {
+    font-size: 12px;
     position: relative;
-    width: auto;
-    padding-top: 23px;
-    z-index: 10;
+    left: 6px;
 }
 
-.logo {
-    float: left;
+.navigation-li img {
+    position: relative;
+    top: 5px;
+}
+
+a, a:active, a:focus, a:hover, a:visited {
+    text-decoration: none;
+    outline: 0;
     cursor: pointer;
+}
+
+.link-private-office {
+
+}
+
+.scroll_down {
+    margin-top: -60px;
+}
+
+.scroll_up {
+    margin-top: -60px;
+    box-shadow: 0 0 10px -2px #333;
+}
+
+.date {
+    text-align: center;
+    line-height: 60px;
 }

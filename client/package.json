@@ -5,6 +5,7 @@
     "start": "node bin/server.js"
   },
   "devDependencies": {
+    "moment": "^2.22.2",
     "autoprefixer": "^9.0.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
@@ -40,6 +41,7 @@
     "redux-thunk": "^2.3.0",
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.0.3",
+    "react-svg-loader": "2.1.0",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.16.1",
