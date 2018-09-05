@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as userActions from '../../actions/UserActions'
 import Date from '../../components/Date'
-import './styles.css';
+import './styles.css'
 
 
 class Header extends Component {
@@ -54,6 +54,13 @@ class Header extends Component {
             <div className='header'>
                 <div id='navigation-top' className='navigation-top'>
                     <div className='date'><Date/></div>
+                    {/*<div className='nav-menu'>*/}
+                        {/*<ul>*/}
+                            {/*<li>*/}
+                                {/*<a>Why Swagger</a>*/}
+                            {/*</li>*/}
+                        {/*</ul>*/}
+                    {/*</div>*/}
                 </div>
                 <div id='navigation' className='navigation'>
                     <ul style={{margin: '0', padding: '0, 50px, 0, 50px', float: 'right'}}>

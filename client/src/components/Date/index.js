@@ -1,22 +1,33 @@
 import React, { Component } from 'react'
 import moment from 'moment'
+import './styles.css'
 moment.locale('ru');
 
 export default class Date extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: ''
+            date: '',
+            day: '',
+            time: ''
         };
         this.intervalID = null;
     }
 
     componentDidMount() {
         let that = this;
-        setInterval(() => {
-            let date = moment().format('LTS') + '\u00A0\u00A0\u00A0' + moment().format('LL');
-            that.intervalID = that.setState({date: date});
-        }, 1000);
+        that.setState({
+            date: moment().format('LL').substring(0, moment().format('LL').length-8),
+            day: moment().format('dddd'),
+            time: moment().format('LT')
+        });
+        this.intervalID = setInterval(() => {
+           that.setState({
+               date: moment().format('LL').substring(0, moment().format('LL').length-8),
+               day: moment().format('dddd'),
+               time: moment().format('LT')
+           });
+        }, 5000);
     }
 
     componentWillUnmount() {
@@ -25,8 +36,12 @@ export default class Date extends Component {
 
     render() {
         return (
-            <div>
-                <div className='date'>{this.state.date}</div>
+            <div className='form-date'>
+                <div className='clock'>
+                    <div>{this.state.date}</div>
+                    <div>{this.state.day}</div>
+                    <div className='time'>{this.state.time}</div>
+                </div>
             </div>
         )
     }
