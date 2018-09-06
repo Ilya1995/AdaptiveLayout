@@ -54,13 +54,20 @@ class Header extends Component {
             <div className='header'>
                 <div id='navigation-top' className='navigation-top'>
                     <div className='date'><Date/></div>
-                    {/*<div className='nav-menu'>*/}
-                        {/*<ul>*/}
-                            {/*<li>*/}
-                                {/*<a>Why Swagger</a>*/}
-                            {/*</li>*/}
-                        {/*</ul>*/}
-                    {/*</div>*/}
+                    <div className='nav-menu'>
+                        <ul className='main-nav-list'>
+                            <li>
+                                <a>Why Swagger</a>
+                                <div className='dropdown'>
+                                    <ul>
+                                        <li>
+                                            <a className='main-nav-icon api-design'>API Design</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div id='navigation' className='navigation'>
                     <ul style={{margin: '0', padding: '0, 50px, 0, 50px', float: 'right'}}>
