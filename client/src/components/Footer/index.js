@@ -9,7 +9,7 @@ export default class Footer extends Component {
 
     render() {
         return (
-            <div className='footer'>
+            <div id="promo-page-4" className='footer promo-page-multiple-block' data-selector="4">
                 <table className='footer-container'>
                     <tbody>
                         <tr>

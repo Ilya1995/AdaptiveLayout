@@ -87,7 +87,7 @@ a, a:active, a:focus, a:hover, a:visited {
     text-align: center;
 }
 
-.nav-menu li {
+.nav-menu > ul > li {
     list-style: none;
     display: inline-block;
     height: 60px;
@@ -99,7 +99,7 @@ a, a:active, a:focus, a:hover, a:visited {
     background-color: #eaebec;
 }
 
-.nav-menu a {
+.nav-menu > ul > li > a {
     color: #555;
     font-weight: 400;
     font-size: 100%;
@@ -109,7 +109,7 @@ a, a:active, a:focus, a:hover, a:visited {
     display: inline-block;
 }
 
-.nav-menu li > a:after {
+.nav-menu > ul > li > a:after {
     font-family: "Font Awesome 5 Pro";
     content: "\f054";
     margin-left: 10px;
@@ -121,7 +121,7 @@ a, a:active, a:focus, a:hover, a:visited {
     transition: transform .7s ease-in-out;
 }
 
-.nav-menu li:hover > a:after {
+.nav-menu > ul > li:hover > a:after {
     -webkit-transform: rotate(450deg);
     transform: rotate(450deg);
 }
@@ -131,8 +131,8 @@ a, a:active, a:focus, a:hover, a:visited {
     opacity: 0;
     position: absolute;
     background-color: rgba(17,17,17,.95);
-    min-width: 370px;
-    max-width: 520px;
+    min-width: 320px;
+    max-width: 470px;
     padding: 15px 25px;
     border-radius: 0 45px 45px 45px;
     transition: opacity .3s ease-in-out;
@@ -156,7 +156,15 @@ a, a:active, a:focus, a:hover, a:visited {
 }
 
 .main-nav-list .dropdown .api-design::before {
-    background-image: url('/src/containers/Header/SW_Menu1_1.svg');
+    background-image: url('/src/containers/Header/img/SW_Menu1_1.svg');
+}
+
+.main-nav-list .dropdown .api-development::before {
+    background-image: url('/src/containers/Header/img/SW_Menu1_2.svg');
+}
+
+.main-nav-list .dropdown .api-documentation::before {
+    background-image: url('/src/containers/Header/img/SW_Menu1_3.svg');
 }
 
 .main-nav-list .dropdown .main-nav-icon::before {
@@ -177,4 +185,17 @@ a, a:active, a:focus, a:hover, a:visited {
     font-family: "Font Awesome 5 Pro";
     opacity: 0;
     transition: all .3s ease-in-out;
+}
+
+.main-nav-list > li .dropdown ul li a:hover {
+    color: #57c534 !important;
+    text-decoration: none;
+}
+
+.main-nav-list > li .dropdown ul li a:hover::after {
+    opacity: 1;
+}
+
+.dropdown ul li {
+    padding: 7px 0;
 }

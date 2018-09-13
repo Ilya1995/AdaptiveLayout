@@ -33,9 +33,12 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        this.scrollNavParams.NavElemTop = document.getElementById('navigation-top');
-        this.scrollNavParams.NavElem = document.getElementById('navigation');
-        window.addEventListener('scroll', this.scrollNavigation, true);
+        // this.scrollNavParams.NavElemTop = document.getElementById('navigation-top');
+        // this.scrollNavParams.NavElem = document.getElementById('navigation');
+
+        document.getElementById('navigation-top').classList.add('scroll_down');
+        document.getElementById('navigation').classList.add('scroll_up');
+        //window.addEventListener('scroll', this.scrollNavigation, true);
     }
 
     componentWillUnmount() {
@@ -63,6 +66,12 @@ class Header extends Component {
                                         <li>
                                             <a className='main-nav-icon api-design'>API Design</a>
                                         </li>
+                                        <li>
+                                            <a className='main-nav-icon api-development'>API Development</a>
+                                        </li>
+                                        <li>
+                                            <a className='main-nav-icon api-documentation'>API Documentation</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
@@ -73,7 +82,7 @@ class Header extends Component {
                     <ul style={{margin: '0', padding: '0, 50px, 0, 50px', float: 'right'}}>
                         <li>
                             <Link to='/' className='navigation-li' style={{width: '130px'}}>
-                                <img src='./src/containers/Header/man.svg' alt='man' width='21px' height='21px;'/>
+                                <img src='./src/containers/Header/img/man.svg' alt='man' width='21px' height='21px;'/>
                                 <span>Личный кабинет</span>
                             </Link>
                         </li>

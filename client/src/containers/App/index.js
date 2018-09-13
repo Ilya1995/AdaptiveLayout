@@ -6,7 +6,7 @@ import Footer from '../../components/Footer'
 export default class App extends Component {
     render() {
         return (
-            <div className='container'>
+            <div id="main" className='container'>
                 <Header />
                 {/*<div>*/}
                     {/*<div style={{background: "url('https://sprinthost.ru/img/bg-header-main.svg') center top no-repeat"}}>*/}
