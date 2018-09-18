@@ -20,7 +20,7 @@ export default class Home extends Component {
         e = e || window.event;
         let delta = e.deltaY;
         if (delta > 0) {
-            if (kray !== this.numberCurrentBlock) {
+            if (kray != this.numberCurrentBlock) {
                 this.numberCurrentBlock++;
             }
         } else {
@@ -31,8 +31,11 @@ export default class Home extends Component {
         let page = 'promo-page-' + this.numberCurrentBlock;
         const element = document.getElementById(page);
         const elementRect = element.getBoundingClientRect();
+        console.log(elementRect.top, window.pageYOffset);
         const absoluteElementTop = elementRect.top + window.pageYOffset;
-        window.scrollTo({ top: absoluteElementTop-60, behavior: 'smooth' });
+        console.log(window.innerHeight);
+        window.scrollTo({ top: absoluteElementTop-60, left: 0, behavior: 'smooth' });
+        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
     }
 
     onResize() {

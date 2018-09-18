@@ -36,13 +36,19 @@ class Header extends Component {
         // this.scrollNavParams.NavElemTop = document.getElementById('navigation-top');
         // this.scrollNavParams.NavElem = document.getElementById('navigation');
 
-        document.getElementById('navigation-top').classList.add('scroll_down');
+        // document.getElementById('navigation-top').classList.add('scroll_down');
         document.getElementById('navigation').classList.add('scroll_up');
-        //window.addEventListener('scroll', this.scrollNavigation, true);
+        // window.addEventListener('scroll', this.scrollNavigation, true);
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.scrollNavigation, true);
+    }
+
+    openToggle () {
+        document.getElementById('navigation').classList.contains('mobile_open') ?
+            document.getElementById('navigation').classList.remove('mobile_open') :
+            document.getElementById('navigation').classList.add('mobile_open');
     }
 
     render() {
@@ -55,9 +61,12 @@ class Header extends Component {
 
         return (
             <div className='header'>
-                <div id='navigation-top' className='navigation-top'>
+                <div id='navigation' className='navigation'>
                     <div className='date'><Date/></div>
                     <div className='nav-menu'>
+                        <div onClick={this.openToggle} className='nav_toggle'>
+
+                        </div>
                         <ul className='main-nav-list'>
                             <li>
                                 <a>Why Swagger</a>
@@ -75,15 +84,35 @@ class Header extends Component {
                                     </ul>
                                 </div>
                             </li>
+                            <li>
+                                <a>Ehdser</a>
+                                <div className='dropdown'>
+                                    <ul>
+                                        <li>
+                                            <a className='main-nav-icon api-design'>Design</a>
+                                        </li>
+                                        <li>
+                                            <a className='main-nav-icon api-development'>Lopment</a>
+                                        </li>
+                                        <li>
+                                            <a className='main-nav-icon api-documentation'>Ation</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
                     </div>
-                </div>
-                <div id='navigation' className='navigation'>
-                    <ul style={{margin: '0', padding: '0, 50px, 0, 50px', float: 'right'}}>
+                    <ul className="navigation-ul">
                         <li>
-                            <Link to='/' className='navigation-li' style={{width: '130px'}}>
+                            <Link to='/' className='navigation-li'>
                                 <img src='./src/containers/Header/img/man.svg' alt='man' width='21px' height='21px;'/>
                                 <span>Личный кабинет</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/' className='navigation-li'>
+                                <img src='./src/containers/Header/img/help.svg' alt='help' width='21px' height='21px;'/>
+                                <span>Помощь</span>
                             </Link>
                         </li>
                     </ul>
