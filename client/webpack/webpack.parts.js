@@ -43,13 +43,14 @@ exports.loadHtml = ({ include, exclude } = {}) => ({
                 ]
             }
         ]
-    },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: './index.html',
-            filename: './index.html'
-        })
-    ]
+    }
+    //Эта штука позволяет получать bundle и css не указывая их index.html
+    // plugins: [
+    //     new HtmlWebPackPlugin({
+    //         template: './index.html',
+    //         filename: './index.html'
+    //     })
+    // ]
 });
 
 exports.devServer = ({ host, port } = {}) => ({

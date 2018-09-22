@@ -31,9 +31,9 @@ export default class Home extends Component {
         let page = 'promo-page-' + this.numberCurrentBlock;
         const element = document.getElementById(page);
         const elementRect = element.getBoundingClientRect();
-        console.log(elementRect.top, window.pageYOffset);
+        //console.log(elementRect.top, window.pageYOffset);
         const absoluteElementTop = elementRect.top + window.pageYOffset;
-        console.log(window.innerHeight);
+        //console.log(window.innerHeight);
         window.scrollTo({ top: absoluteElementTop-60, left: 0, behavior: 'smooth' });
         e.preventDefault ? e.preventDefault() : (e.returnValue = false);
     }

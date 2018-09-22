@@ -104,7 +104,7 @@ class Header extends Component {
                     </div>
                     <ul className="navigation-ul">
                         <li>
-                            <Link to='/' className='navigation-li'>
+                            <Link to='/login' className='navigation-li'>
                                 <img src='./src/containers/Header/img/man.svg' alt='man' width='21px' height='21px;'/>
                                 <span>Личный кабинет</span>
                             </Link>

@@ -1,0 +1,15 @@
+.overlay {
+    background: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1603;
+}
+
+.preloader{
+    margin-top: 20%;
+    display: block;
+    text-align: center;
+}

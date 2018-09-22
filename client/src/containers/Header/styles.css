@@ -63,6 +63,10 @@
     left: 6px;
 }
 
+.navigation-li span:hover {
+    color: #CCCCCC;
+}
+
 .navigation-li img {
     position: relative;
     top: 7px;
