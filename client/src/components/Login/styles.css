@@ -9,12 +9,13 @@
 }
 
 .form-aunt {
+    position: relative;
     background-color: #363636;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     margin: 100px auto;
-    width: 500px;
+    width: 450px;
     font-size: 16px;
     -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
@@ -50,10 +51,35 @@
     border-radius: 5px;
 }
 
+.reg-btn {
+    cursor: pointer;
+    margin-right: 22%;
+    padding: 4px 5px;
+    border-radius: 8px;
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
+    outline: none;
+    transition: all .3s ease-in-out;
+}
+
+.reg-btn:hover {
+    border: 1px solid #DADADA;
+    background-color: #DADADA;
+}
+
+.text-form {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-left: 19%;
+}
+
 .login-submit {
     position: absolute;
     top: 35px;
-    right: 89px;
+    right: 64px;
     width: 48px;
     height: 48px;
     padding: 8px;
@@ -63,12 +89,16 @@
 }
 
 .login-submit::before {
-    top: 21px;
+    top: 20px;
     left: -3px;
     width: 6px;
-    height: 19px;
+    height: 18px;
     -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
     box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.registrarion .login-submit {
+    display: none;
 }
 
 .login-button {
@@ -76,7 +106,6 @@
     z-index: 2;
     width: 48px;
     height: 48px;
-    padding: 0 0 48px;
     text-indent: 120%;
     white-space: nowrap;
     overflow: hidden;
@@ -88,14 +117,11 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px rgba(255, 255, 255, 0.1);
 }
 
-
-
 .login-submit::after {
     top: -4px;
     bottom: -4px;
     right: -4px;
     width: 36px;
-
 }
 
 .login-submit::before, .login-submit::after {
@@ -143,6 +169,17 @@
     background: url("../Login/img/arrow.png") 0 0 no-repeat;
 }
 
+.body-form .text {
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.65;
+}
+
+.body-form .text:hover {
+    opacity: 1;
+}
+
 @media screen and (max-width: 500px) {
     .form-aunt {
         width: 300px;
@@ -153,7 +190,41 @@
     .login-submit::before {
         height: 15px;
     }
-    .login-button {
-        padding: 0;
+    .body-form .text-form {
+        padding-left: 1px;
     }
+    .reg-btn {
+        margin-right: 1px;
+    }
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+.btn-close {
+    cursor: pointer;
+    border: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 2px;
+    right: 2px;
+    color: #FFF;
+    text-align: center;
+    opacity: .65;
+    background: url('/src/components/Login/img/close.svg') center center no-repeat;
+}
+
+.is-open {
+    transition: width 1.8s cubic-bezier(0.230, 1.000, 0.320, 1.000),
+    height 1.8s cubic-bezier(0.230, 1.000, 0.320, 1.000),
+    transform 1.8s cubic-bezier(0.175, 0.885, 0.320, 1.000);
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    text-align: center;
+    transform: rotateX(360deg);
 }
