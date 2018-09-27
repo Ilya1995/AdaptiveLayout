@@ -1,3 +1,12 @@
+.fon {
+    padding-bottom: 700px;
+    background: url('/src/components/Home/img/fon1.jpg') no-repeat;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: cover;
+}
+
 .overlay {
     background: rgba(0, 0, 0, 0.6);
     height: 100%;
@@ -86,6 +95,9 @@
     border-radius: 32px;
     -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+    transition: all .3s ease-in-out;
+    visibility: visible;
+    opacity: 1;
 }
 
 .login-submit::before {
@@ -98,7 +110,21 @@
 }
 
 .registrarion .login-submit {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.inp-reg {
+    transition: opacity 1s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+}
+
+.registrarion .inp-reg {
+    visibility: visible;
+    opacity: 1;
+    position: inherit;
 }
 
 .login-button {

@@ -107,16 +107,47 @@ export default class Home extends Component {
             <div id="promo-page-main" className='promo-page-main'>
                 <div id="promo-page-container" className="promo-page-container promo-page-multiple-container" data-selector="promo-page-container">
                     <div id="promo-page-1" data-selector="1" style={{'height': this.state.windowHeight-60}} className='promo-page-block-one promo-page-multiple-block'>
-                        hi1
-                        <div className='col-md-12'>Раздел 1/</div>
+
+                        <div className='title'>Выбери лучшую машину по версии АВТОВАЗ</div>
+
+                        <div className="slider">
+                            <input defaultChecked type="radio" name="slider" id="switch1"/>
+                            <input type="radio" name="slider" id="switch2"/>
+                            <input type="radio" name="slider" id="switch3"/>
+                            <input type="radio" name="slider" id="switch4"/>
+                            <input type="radio" name="slider" id="switch5"/>
+                            <div className="slides">
+                                <div className="image">
+                                    <img src="/src/components/Home/img/evo.jpeg"/>
+                                    <img src="/src/components/Home/img/rx7.jpeg"/>
+                                    <img src="/src/components/Home/img/bmv.jpeg"/>
+                                    <img src="/src/components/Home/img/9.jpeg"/>
+                                    <img src="/src/components/Home/img/wrx.jpeg"/>
+                                </div>
+                            </div>
+                            <div className="controls">
+                                <label htmlFor="switch1"/>
+                                <label htmlFor="switch2"/>
+                                <label htmlFor="switch3"/>
+                                <label htmlFor="switch4"/>
+                                <label htmlFor="switch5"/>
+                            </div>
+                            <div className="active">
+                                <label htmlFor="switch1"/>
+                                <label htmlFor="switch2"/>
+                                <label htmlFor="switch3"/>
+                                <label htmlFor="switch4"/>
+                                <label htmlFor="switch5"/>
+                            </div>
+                        </div>
                     </div>
+
+
                     <div id="promo-page-2" data-selector="2" style={{'height': this.state.windowHeight-60}} className='promo-page-block-two promo-page-multiple-block'>
-                        hi2
-                        <div className='col-md-12'>Раздел 2/</div>
+
                     </div>
                     <div id="promo-page-3" data-selector="3" style={{'height': this.state.windowHeight-60}} className='promo-page-block-three promo-page-multiple-block'>
-                        hi3
-                        <div className='col-md-12'>Раздел 3/</div>
+
                     </div>
                     {/*У footer data-selector="4"*/}
                 </div>

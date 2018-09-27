@@ -69,33 +69,33 @@ class Header extends Component {
                         </div>
                         <ul className='main-nav-list'>
                             <li>
-                                <a>Why Swagger</a>
+                                <a>Программирование</a>
                                 <div className='dropdown'>
                                     <ul>
                                         <li>
-                                            <a className='main-nav-icon api-design'>API Design</a>
+                                            <a className='main-nav-icon api-design'>Java</a>
                                         </li>
                                         <li>
-                                            <a className='main-nav-icon api-development'>API Development</a>
+                                            <a className='main-nav-icon api-development'>JavaScript</a>
                                         </li>
                                         <li>
-                                            <a className='main-nav-icon api-documentation'>API Documentation</a>
+                                            <a className='main-nav-icon api-documentation'>PHP</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <a>Ehdser</a>
+                                <a>Разное</a>
                                 <div className='dropdown'>
                                     <ul>
                                         <li>
-                                            <a className='main-nav-icon api-design'>Design</a>
+                                            <a className='main-nav-icon api-design'>Дизайн</a>
                                         </li>
                                         <li>
-                                            <a className='main-nav-icon api-development'>Lopment</a>
+                                            <a className='main-nav-icon api-development'>Верстка</a>
                                         </li>
                                         <li>
-                                            <a className='main-nav-icon api-documentation'>Ation</a>
+                                            <a className='main-nav-icon api-documentation'>Печенюхи</a>
                                         </li>
                                     </ul>
                                 </div>

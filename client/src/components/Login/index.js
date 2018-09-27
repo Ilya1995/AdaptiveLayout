@@ -30,7 +30,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <div style={{marginBottom: '600px'}}>
+            <div className='fon'>
                 <div className='overlay'>
                     <form id='form' className='form-aunt'>
                         <div id='title-form' className='title-form loading-button'>
@@ -39,9 +39,9 @@ export default class Home extends Component {
                         </div>
                         <div className='body-form'>
                             <input type='text' placeholder='Логин'/>
-                            {!this.state.comand ? <input type='email' placeholder='email'/>: null}
+                            <input type='email' className='inp-reg' placeholder='email'/>
                             <input type='password' placeholder='Пароль'/>
-                            {!this.state.comand ? <input type='password' placeholder='Повторите пароль'/>: null}
+                            <input type='password' className='inp-reg' placeholder='Повторите пароль'/>
                             <p className="login-submit">
                                 <button onClick={this.entry} className="login-button">Войти</button>
                             </p>
@@ -50,7 +50,7 @@ export default class Home extends Component {
                                     <div onClick={this.regOrAunt.bind(this)} className='text'>{this.state.comand ? 'Регистрация' : 'Авторизация'}</div>
                                     <div className='text'>Забыли пароль?</div>
                                 </div>
-                                {!this.state.comand ? <button onClick={this.registration.bind(this)} className='reg-btn'>Подтвердить</button> : null}
+                                {!this.state.comand ? <button onClick={this.registration.bind(this)} className='reg-btn inp-reg'>Подтвердить</button> : null}
                             </div>
                         </div>
                     </form>

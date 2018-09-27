@@ -1,6 +1,4 @@
-
 #promo-page-1 {
-    background-color: #22491c;
     background: url('/src/components/Home/img/fon1.jpg') no-repeat;
     -moz-background-size: 100%; /* Firefox 3.6+ */
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
@@ -10,8 +8,7 @@
 }
 
 #promo-page-2 {
-    background-color: #021d52;
-    background: url('/src/components/Home/img/fon2.jpg') no-repeat;
+    background: url('/src/components/Home/img/fon2.jpeg') no-repeat;
     -moz-background-size: 100%; /* Firefox 3.6+ */
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
     -o-background-size: 100%; /* Opera 9.6+ */
@@ -19,10 +16,172 @@
 }
 
 #promo-page-3 {
-    background-color: #131722;
-    background: url('/src/components/Home/img/fon3.jpg') no-repeat;
+    background: url('/src/components/Home/img/fon1.jpg') no-repeat;
     -moz-background-size: 100%; /* Firefox 3.6+ */
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
     -o-background-size: 100%; /* Opera 9.6+ */
     background-size: cover;
+}
+
+.title {
+    color: #313131;
+    font-size: 32px;
+    padding-top: 35px;
+    text-align: center;
+}
+
+.slider {
+    position: relative;
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 35px 0;
+}
+
+.slider input {
+    display: none;
+}
+
+.slider .slides img {
+    width: 20%;
+    float: left;
+}
+
+.slides .image {
+    width: 500%;
+    line-height: 0;
+}
+
+.slides {
+    overflow: hidden;
+    -webkit-box-shadow: 0 -15px 30px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 -15px 30px 0 rgba(0, 0, 0, 0.3);
+}
+
+.image img {
+    width: 100%;
+}
+
+#switch1:checked ~ .controls label:nth-child(5),
+#switch2:checked ~ .controls label:nth-child(1),
+#switch3:checked ~ .controls label:nth-child(2),
+#switch4:checked ~ .controls label:nth-child(3),
+#switch5:checked ~ .controls label:nth-child(4) {
+    background: url('img/prev.png') no-repeat;
+    background-size: 40px 40px;
+    float: left;
+    margin: 0 0 0 -60px;
+    display: block;
+    height: 40px;
+    width: 40px;
+}
+
+#switch1:checked ~ .controls label:nth-child(2),
+#switch2:checked ~ .controls label:nth-child(3),
+#switch3:checked ~ .controls label:nth-child(4),
+#switch4:checked ~ .controls label:nth-child(5),
+#switch5:checked ~ .controls label:nth-child(1) {
+    background: url('img/next.png') no-repeat;
+    background-size: 40px 40px;
+    float: right;
+    margin: 0 -60px 0 0;
+    display: block;
+    height: 40px;
+    width: 40px;
+}
+
+label, a {
+    cursor: pointer;
+}
+
+#switch1:checked ~ .slides .image {
+    margin-left: 0;
+}
+
+#switch2:checked ~ .slides .image {
+    margin-left: -100%;
+}
+
+#switch3:checked ~ .slides .image {
+    margin-left: -200%;
+}
+
+#switch4:checked ~ .slides .image {
+    margin-left: -300%;
+}
+
+#switch5:checked ~ .slides .image {
+    margin-left: -400%;
+}
+
+.controls {
+    margin: -30% 0 0 0;
+    width: 100%;
+    height: 50px;
+}
+
+.active label {
+    border-radius: 10px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: #9D9D9D;
+    margin-right: 2px;
+}
+
+.active {
+    margin: 23% 0 0;
+    text-align: center;
+}
+
+.active label:hover {
+    background: #249F24;
+    border-color: #777 !important;
+}
+
+#switch1:checked ~ .active label:nth-child(1),
+#switch2:checked ~ .active label:nth-child(2),
+#switch3:checked ~ .active label:nth-child(3),
+#switch4:checked ~ .active label:nth-child(4),
+#switch5:checked ~ .active label:nth-child(5) {
+    background: #1D711D;
+    border-color: #1D711D !important;
+}
+
+.slides .image {
+    transition: all 0.8s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+}
+
+.controls label:hover {
+    opacity: 0.6;
+}
+
+.controls label {
+    transition: opacity 0.2s ease-out;
+}
+
+@media screen and (max-width: 800px) {
+    .slider {
+        max-width: 400px;
+        padding: 30px 0;
+    }
+    .title {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .title {
+        font-size: 22px;
+    }
+    .slider {
+        max-width: 100%;
+        padding: 25px;
+    }
+    .controls {
+        display: none;
+    }
+    .active {
+        margin: 3% 0 0;
+    }
 }
