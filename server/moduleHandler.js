@@ -17,7 +17,7 @@ var ModuleHandler = function () {
 
 ModuleHandler.prototype.runModules = function (callback) {
     var self = this;
-    var nameModules = ['api'];
+    var nameModules = ['api', 'clients'];
     _.each(nameModules, function (nameModule) {
         var module = childProcess.spawn(process.execPath, [config.modules.path+nameModule+'/main.js'], { stdio: ['pipe', 1, 2, 'ipc'] });
         module.moduleName = nameModule;

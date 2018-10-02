@@ -18,11 +18,11 @@ app.use(function (req, res, next) {
 });
 moduleHandler.runModules();
 setTimeout(function () {
-    moduleHandler.modules['api'].execFunc('hi', {data: 256}, function (result, data) {
+    moduleHandler.modules['clients'].execFunc('registration', {data: 256}, function (result, data) {
         console.log(result);
         console.log(data);
     });
-}, 6000);
+}, 4000);
 
 app.listen(app.get('port'), function (err) {
     if (err) {
