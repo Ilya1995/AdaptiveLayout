@@ -3,3 +3,15 @@ body {
     padding: 0;
     font-family: "Proxima Nova Rg";
 }
+
+.error {
+    color: #FF392B;
+    margin-top: -10px;
+}
+
+.inp-err {
+    border: 1px solid #E9322D;
+    -moz-box-shadow: 0 0 10px rgba(233,50,45,0.75); /* Для Firefox */
+    -webkit-box-shadow: 0 0 10px rgba(233,50,45,0.75); /* Для Safari и Chrome */
+    box-shadow: 0 0 10px rgba(233,50,45,0.75); /* Параметры тени */
+}

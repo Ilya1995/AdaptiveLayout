@@ -44,25 +44,28 @@
 
 .body-form {
     border: none;
-    padding: 20px;
+    padding: 20px 70px;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow:hidden
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.registrarion .body-form {
+    height: 300px;
 }
 
 .body-form input {
     border: 0 solid #292829;
     padding: 12px 10px;
-    width: 238px;
     -webkit-appearance: none;
-    margin: 10px auto;
     border-radius: 5px;
+    margin: 10px 0;
 }
 
 .reg-btn {
     cursor: pointer;
-    margin-right: 22%;
     padding: 4px 5px;
     border-radius: 8px;
     border: 1px solid #FFFFFF;
@@ -71,6 +74,7 @@
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
     outline: none;
     transition: all .3s ease-in-out;
+    height: 35px;
 }
 
 .reg-btn:hover {
@@ -82,13 +86,16 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    padding-left: 19%;
+}
+
+.registrarion .text-form {
+    padding-bottom: 30px;
 }
 
 .login-submit {
     position: absolute;
     top: 35px;
-    right: 64px;
+    right: 38px;
     width: 48px;
     height: 48px;
     padding: 8px;
@@ -216,11 +223,8 @@
     .login-submit::before {
         height: 15px;
     }
-    .body-form .text-form {
-        padding-left: 1px;
-    }
-    .reg-btn {
-        margin-right: 1px;
+    .body-form {
+        padding: 20px 25px;
     }
 }
 

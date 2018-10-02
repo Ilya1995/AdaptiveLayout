@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Field, LocalForm, Control, Errors } from 'react-redux-form';
 import './styles.css'
+
+const isRequired = (val) => val && val.length > 0;
+const minLength = (num, val) => !val || val && val.length >= num;
+const validEmail = (val) => {
+    let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    return !val || !(reg.test(val) === false)
+};
 
 export default class Home extends Component {
     constructor(props) {
@@ -28,23 +36,122 @@ export default class Home extends Component {
         e.preventDefault();
     }
 
+    handleUpdate(val) {
+        console.log(val);
+    }
+
     render() {
+        let that = this;
+        const passwordMatch = (val) => {
+            console.log(val);
+            console.log(Control.getFieldFromState());
+            return true;
+        };
         return (
             <div className='fon'>
                 <div className='overlay'>
-                    <form id='form' className='form-aunt'>
+                    <LocalForm id='form' className='form-aunt'
+                               model="user"
+                               onSubmit={this.handleSubmit}>
                         <div id='title-form' className='title-form loading-button'>
                             <Link to='/'  className='btn-close' title='Закрыть форму заказа'/>
                             {this.state.comand ? 'Авторизация' : 'Регистрация'}
                         </div>
                         <div className='body-form'>
-                            <input type='text' placeholder='Логин'/>
-                            <input type='email' className='inp-reg' placeholder='email'/>
-                            <input type='password' placeholder='Пароль'/>
-                            <input type='password' className='inp-reg' placeholder='Повторите пароль'/>
+
+
+                            <Control.text
+                                model="user.login" placeholder='Логин'
+                                mapProps={{
+                                    className: ({fieldValue}) => fieldValue.touched && !fieldValue.valid &&
+                                    !fieldValue.focus && !this.state.comand
+                                        ? 'inp-err'
+                                        : ''
+                                }}
+                                validators={{ isRequired, minLength: minLength.bind(this, 5) }}
+                            />
+                            {!this.state.comand ?
+                            <Errors
+                                className='error'
+                                wrapper="div"
+                                show={{ touched: true, focus: false }}
+                                model="user.login"
+                                messages={{
+                                    isRequired: 'Заполни поле. ',
+                                    minLength: 'Логин должен содержать более 5 символов. '
+                                }}
+                            /> : null}
+
+                            <Control.text
+                                model="user.email" placeholder='email'
+                                mapProps={{
+                                    className: ({fieldValue}) => fieldValue.touched && !fieldValue.valid &&
+                                    !fieldValue.focus && !this.state.comand
+                                        ? 'inp-err inp-reg'
+                                        : 'inp-reg'
+                                }}
+                                validators={{ isRequired, validEmail}}
+                            />
+                            {!this.state.comand ?
+                            <Errors
+                                className='error'
+                                wrapper="div"
+                                show={{ touched: true, focus: false }}
+                                model="user.email"
+                                messages={{
+                                    isRequired: 'Заполни поле. ',
+                                    validEmail: 'Некорректный email'
+                                }}
+                            /> : null}
+
+                            <Control.password
+                                model="user.password" placeholder='Пароль'
+                                mapProps={{
+                                    className: ({fieldValue}) => fieldValue.touched && !fieldValue.valid &&
+                                    !fieldValue.focus && !this.state.comand
+                                        ? 'inp-err'
+                                        : ''
+                                }}
+                                validators={{ isRequired, minLength: minLength.bind(this, 8) }}
+                            />
+                            {!this.state.comand ?
+                            <Errors
+                                className='error'
+                                wrapper="div"
+                                show={{ touched: true, focus: false }}
+                                model="user.password"
+                                messages={{
+                                    isRequired: 'Заполни поле. ',
+                                    minLength: 'Пароль должен содержать больше 8 символов. '
+                                }}
+                            /> : null}
+
+                            <Control.password
+                                model="user.confirmPassword" placeholder='Повторите пароль'
+                                mapProps={{
+                                    className: ({fieldValue}) => fieldValue.touched && !fieldValue.valid &&
+                                    !fieldValue.focus && !this.state.comand
+                                        ? 'inp-err inp-reg'
+                                        : 'inp-reg'
+                                }}
+                                validators={{ isRequired, minLength: minLength.bind(this, 8)}}
+                            />
+                            {!this.state.comand ?
+                            <Errors
+                                className='error'
+                                wrapper="div"
+                                show={{ touched: true, focus: false }}
+                                model="user.confirmPassword"
+                                messages={{
+                                    isRequired: 'Заполни поле. ',
+                                    minLength: 'Пароль должен содержать больше 8 символов. '
+                                }}
+                            /> : null}
+
                             <p className="login-submit">
                                 <button onClick={this.entry} className="login-button">Войти</button>
                             </p>
+
                             <div className='text-form'>
                                 <div>
                                     <div onClick={this.regOrAunt.bind(this)} className='text'>{this.state.comand ? 'Регистрация' : 'Авторизация'}</div>
@@ -53,7 +160,33 @@ export default class Home extends Component {
                                 {!this.state.comand ? <button onClick={this.registration.bind(this)} className='reg-btn inp-reg'>Подтвердить</button> : null}
                             </div>
                         </div>
-                    </form>
+                    </LocalForm>
+
+
+
+
+                    {/*<form id='form' className='form-aunt'>*/}
+                        {/*<div id='title-form' className='title-form loading-button'>*/}
+                            {/*<Link to='/'  className='btn-close' title='Закрыть форму заказа'/>*/}
+                            {/*{this.state.comand ? 'Авторизация' : 'Регистрация'}*/}
+                        {/*</div>*/}
+                        {/*<div className='body-form'>*/}
+                            {/*<input type='text' required placeholder='Логин'/>*/}
+                            {/*<input type='email' className='inp-reg' placeholder='email'/>*/}
+                            {/*<input type='password' placeholder='Пароль'/>*/}
+                            {/*<input type='password' className='inp-reg' placeholder='Повторите пароль'/>*/}
+                            {/*<p className="login-submit">*/}
+                                {/*<button onClick={this.entry} className="login-button">Войти</button>*/}
+                            {/*</p>*/}
+                            {/*<div className='text-form'>*/}
+                                {/*<div>*/}
+                                    {/*<div onClick={this.regOrAunt.bind(this)} className='text'>{this.state.comand ? 'Регистрация' : 'Авторизация'}</div>*/}
+                                    {/*<div className='text'>Забыли пароль?</div>*/}
+                                {/*</div>*/}
+                                {/*{!this.state.comand ? <button onClick={this.registration.bind(this)} className='reg-btn inp-reg'>Подтвердить</button> : null}*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                    {/*</form>*/}
                 </div>
             </div>
         )
