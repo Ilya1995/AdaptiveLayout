@@ -4,6 +4,8 @@ body {
     font-family: "Proxima Nova Rg";
 }
 
+html { overflow-y: hidden; }
+
 .error {
     color: #FF392B;
     margin-top: -10px;

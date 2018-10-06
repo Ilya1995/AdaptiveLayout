@@ -31,10 +31,12 @@ export default class Home extends Component {
         let page = 'promo-page-' + this.numberCurrentBlock;
         const element = document.getElementById(page);
         const elementRect = element.getBoundingClientRect();
-        //console.log(elementRect.top, window.pageYOffset);
         const absoluteElementTop = elementRect.top + window.pageYOffset;
-        //console.log(window.innerHeight);
         window.scrollTo({ top: absoluteElementTop-60, left: 0, behavior: 'smooth' });
+        document.getElementById('fp'+ this.numberCurrentBlock).checked = true;
+        let fpNav = document.getElementById('fp-nav');
+        fpNav.style.opacity = 0;
+        setTimeout(()=> fpNav.style.opacity = 1, 500);
         e.preventDefault ? e.preventDefault() : (e.returnValue = false);
     }
 
@@ -101,6 +103,17 @@ export default class Home extends Component {
 
     }
 
+    transitionPage(e) {
+        let page = 'promo-page-' + e;
+        const element = document.getElementById(page);
+        const elementRect = element.getBoundingClientRect();
+        const absoluteElementTop = elementRect.top + window.pageYOffset;
+        window.scrollTo({ top: absoluteElementTop-60, left: 0, behavior: 'smooth' });
+        let fpNav = document.getElementById('fp-nav');
+        fpNav.style.opacity = 0;
+        setTimeout(()=> fpNav.style.opacity = 1, 500);
+    }
+
     render() {
         console.log(33);
         return (
@@ -150,6 +163,18 @@ export default class Home extends Component {
 
                     </div>
                     {/*У footer data-selector="4"*/}
+                </div>
+                <div id="fp-nav" className="right fp-prev fp-next">
+                    <input defaultChecked type="radio" name="slider" id="fp1"/>
+                    <input type="radio" name="slider" id="fp2"/>
+                    <input type="radio" name="slider" id="fp3"/>
+                    <input type="radio" name="slider" id="fp4"/>
+                    <div className="active-fp-nav">
+                        <label onClick={this.transitionPage.bind(this,'1')} htmlFor="fp1"/>
+                        <label onClick={this.transitionPage.bind(this,'2')} htmlFor="fp2"/>
+                        <label onClick={this.transitionPage.bind(this,'3')} htmlFor="fp3"/>
+                        <label onClick={this.transitionPage.bind(this,'4')} htmlFor="fp4"/>
+                    </div>
                 </div>
             </div>
         )
