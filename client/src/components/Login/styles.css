@@ -82,6 +82,12 @@
     background-color: #DADADA;
 }
 
+.reg-btn:disabled {
+    border: 1px solid #DADADA;
+    background-color: #DADADA;
+    cursor: default;
+}
+
 .text-form {
     display: flex;
     flex-wrap: nowrap;

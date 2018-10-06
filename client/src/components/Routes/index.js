@@ -6,6 +6,8 @@ import Login from '../Login'
 import Home from '../Home'
 import NotFound from '../NotFound'
 import {Route, Switch} from 'react-router-dom'
+import { NotificationContainer } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 export default class Routes extends Component {
     render() {
@@ -21,6 +23,7 @@ export default class Routes extends Component {
                         </Switch>
                     </App>
                 </Switch>
+                <NotificationContainer/>
             </div>
         )
     }

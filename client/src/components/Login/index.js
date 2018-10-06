@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Field, LocalForm, Control, Errors } from 'react-redux-form';
+import { LocalForm, Control, Errors } from 'react-redux-form';
+import { NotificationManager } from 'react-notifications';
 import './styles.css'
 
 const isRequired = (val) => val && val.length > 0;
@@ -18,7 +19,7 @@ export default class Home extends Component {
         };
     }
 
-    entry(e) {
+    authorization(e) {
         e.preventDefault();
         // this.setState({windowHeight: document.documentElement.clientHeight});
     }
@@ -32,33 +33,23 @@ export default class Home extends Component {
         setTimeout(()=>{title.classList.remove('is-open')},1000)
     }
 
-    registration(e) {
-        e.preventDefault();
-    }
-
-    handleUpdate(val) {
+    registration(val) {
         console.log(val);
+        NotificationManager.error('zxd', 'Пополнение баланса', 25000);
     }
 
     render() {
-        let that = this;
-        const passwordMatch = (val) => {
-            console.log(val);
-            console.log(Control.getFieldFromState());
-            return true;
-        };
         return (
             <div className='fon'>
                 <div className='overlay'>
                     <LocalForm id='form' className='form-aunt'
                                model="user"
-                               onSubmit={this.handleSubmit}>
+                               onSubmit={this.registration}>
                         <div id='title-form' className='title-form loading-button'>
                             <Link to='/'  className='btn-close' title='Закрыть форму заказа'/>
                             {this.state.comand ? 'Авторизация' : 'Регистрация'}
                         </div>
                         <div className='body-form'>
-
 
                             <Control.text
                                 model="user.login" placeholder='Логин'
@@ -149,7 +140,7 @@ export default class Home extends Component {
                             /> : null}
 
                             <p className="login-submit">
-                                <button onClick={this.entry} className="login-button">Войти</button>
+                                <button onClick={this.authorization} className="login-button">Войти</button>
                             </p>
 
                             <div className='text-form'>
@@ -157,36 +148,14 @@ export default class Home extends Component {
                                     <div onClick={this.regOrAunt.bind(this)} className='text'>{this.state.comand ? 'Регистрация' : 'Авторизация'}</div>
                                     <div className='text'>Забыли пароль?</div>
                                 </div>
-                                {!this.state.comand ? <button onClick={this.registration.bind(this)} className='reg-btn inp-reg'>Подтвердить</button> : null}
+                                {!this.state.comand ?
+                                    <Control.button model="user" className='reg-btn inp-reg' disabled={{ valid: false }}>
+                                        Подтвердить
+                                    </Control.button>
+                                : null}
                             </div>
                         </div>
                     </LocalForm>
-
-
-
-
-                    {/*<form id='form' className='form-aunt'>*/}
-                        {/*<div id='title-form' className='title-form loading-button'>*/}
-                            {/*<Link to='/'  className='btn-close' title='Закрыть форму заказа'/>*/}
-                            {/*{this.state.comand ? 'Авторизация' : 'Регистрация'}*/}
-                        {/*</div>*/}
-                        {/*<div className='body-form'>*/}
-                            {/*<input type='text' required placeholder='Логин'/>*/}
-                            {/*<input type='email' className='inp-reg' placeholder='email'/>*/}
-                            {/*<input type='password' placeholder='Пароль'/>*/}
-                            {/*<input type='password' className='inp-reg' placeholder='Повторите пароль'/>*/}
-                            {/*<p className="login-submit">*/}
-                                {/*<button onClick={this.entry} className="login-button">Войти</button>*/}
-                            {/*</p>*/}
-                            {/*<div className='text-form'>*/}
-                                {/*<div>*/}
-                                    {/*<div onClick={this.regOrAunt.bind(this)} className='text'>{this.state.comand ? 'Регистрация' : 'Авторизация'}</div>*/}
-                                    {/*<div className='text'>Забыли пароль?</div>*/}
-                                {/*</div>*/}
-                                {/*{!this.state.comand ? <button onClick={this.registration.bind(this)} className='reg-btn inp-reg'>Подтвердить</button> : null}*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</form>*/}
                 </div>
             </div>
         )

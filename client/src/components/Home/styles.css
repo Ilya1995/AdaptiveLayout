@@ -23,7 +23,7 @@
     background-size: cover;
 }
 
-.title {
+.promo-page-main .title {
     color: #313131;
     font-size: 32px;
     padding-top: 35px;
@@ -165,13 +165,13 @@ label, a {
         max-width: 400px;
         padding: 30px 0;
     }
-    .title {
+    .promo-page-main .title {
         font-size: 28px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .title {
+    .promo-page-main .title {
         font-size: 22px;
     }
     .slider {
