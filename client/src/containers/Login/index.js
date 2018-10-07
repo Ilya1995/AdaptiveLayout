@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from "redux";
+import * as userActions from "../../actions/UserActions";
 import { Link } from 'react-router-dom'
 import { LocalForm, Control, Errors } from 'react-redux-form';
 import { NotificationManager } from 'react-notifications';
+import Loading from "../../components/Preloader";
 import './styles.css'
+import user from "../../reducers/user";
 
 const isRequired = (val) => val && val.length > 0;
 const minLength = (num, val) => !val || val && val.length >= num;
@@ -11,17 +16,12 @@ const validEmail = (val) => {
     return !val || !(reg.test(val) === false)
 };
 
-export default class Home extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             comand: true
         };
-    }
-
-    authorization(e) {
-        e.preventDefault();
-        // this.setState({windowHeight: document.documentElement.clientHeight});
     }
 
     regOrAunt() {
@@ -33,18 +33,45 @@ export default class Home extends Component {
         setTimeout(()=>{title.classList.remove('is-open')},1000)
     }
 
-    registration(val) {
-        console.log(val);
-        NotificationManager.error('zxd', 'Пополнение баланса', 25000);
+    handleSubmit(val) {
+        if (!(isRequired(val.login) && minLength(5 ,val.login))) {
+            NotificationManager.error('Заполни логин', 'Ошибка', 5000);
+            return;
+        }
+        if (!(isRequired(val.password) && minLength(8 ,val.password))) {
+            NotificationManager.error('Заполни пароль', 'Ошибка', 5000);
+            return;
+        }
+
+        if (!this.state.comand) {
+            if (!(isRequired(val.email) && validEmail(val.email))) {
+                NotificationManager.error('Некорректный email', 'Ошибка', 5000);
+                return;
+            }
+            if (!(isRequired(val.confirmPassword) && minLength(8 ,val.confirmPassword))) {
+                NotificationManager.error('Заполни пароль', 'Ошибка', 5000);
+                return;
+            }
+            if (val.password !== val.confirmPassword) {
+                NotificationManager.error('Пароли не совпадают', 'Ошибка', 5000);
+                return;
+            }
+            this.props.userActions.registration(val);
+        } else {
+            this.props.userActions.authentication(val);
+        }
+
     }
 
     render() {
+        const { preloader } = this.props.userInfo;
+        console.log(preloader);
         return (
             <div className='fon'>
                 <div className='overlay'>
                     <LocalForm id='form' className='form-aunt'
                                model="user"
-                               onSubmit={this.registration}>
+                               onSubmit={this.handleSubmit.bind(this)}>
                         <div id='title-form' className='title-form loading-button'>
                             <Link to='/'  className='btn-close' title='Закрыть форму заказа'/>
                             {this.state.comand ? 'Авторизация' : 'Регистрация'}
@@ -59,6 +86,7 @@ export default class Home extends Component {
                                         ? 'inp-err'
                                         : ''
                                 }}
+                                defaultValue='1234567'
                                 validators={{ isRequired, minLength: minLength.bind(this, 5) }}
                             />
                             {!this.state.comand ?
@@ -81,6 +109,7 @@ export default class Home extends Component {
                                         ? 'inp-err inp-reg'
                                         : 'inp-reg'
                                 }}
+                                defaultValue='123@45.ru'
                                 validators={{ isRequired, validEmail}}
                             />
                             {!this.state.comand ?
@@ -103,6 +132,7 @@ export default class Home extends Component {
                                         ? 'inp-err'
                                         : ''
                                 }}
+                                defaultValue='123@45.6sss7'
                                 validators={{ isRequired, minLength: minLength.bind(this, 8) }}
                             />
                             {!this.state.comand ?
@@ -125,6 +155,7 @@ export default class Home extends Component {
                                         ? 'inp-err inp-reg'
                                         : 'inp-reg'
                                 }}
+                                defaultValue='123@45.6sss7'
                                 validators={{ isRequired, minLength: minLength.bind(this, 8)}}
                             />
                             {!this.state.comand ?
@@ -140,7 +171,9 @@ export default class Home extends Component {
                             /> : null}
 
                             <p className="login-submit">
-                                <button onClick={this.authorization} className="login-button">Войти</button>
+                                <Control.button model="user" className='login-button'>
+                                    Войти
+                                </Control.button>
                             </p>
 
                             <div className='text-form'>
@@ -157,7 +190,22 @@ export default class Home extends Component {
                         </div>
                     </LocalForm>
                 </div>
+                {preloader ? <Loading /> : null}
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userInfo: state.user
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userActions: bindActionCreators(userActions, dispatch)
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

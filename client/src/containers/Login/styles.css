@@ -1,6 +1,6 @@
 .fon {
     padding-bottom: 700px;
-    background: url('/src/components/Home/img/fon1.jpg') no-repeat;
+    background: url('/src/containers/Home/img/fon1.jpg') no-repeat;
     -moz-background-size: 100%; /* Firefox 3.6+ */
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
     -o-background-size: 100%; /* Opera 9.6+ */
@@ -195,7 +195,7 @@
 }
 
 .login-submit, .login-submit::before, .login-submit::after {
-    background: #373737 url("../Login/img/bg.png") 0 0 repeat;
+    background: #373737 url("/src/containers/Login/img/bg.png") 0 0 repeat;
 }
 
 .login-button::after {
@@ -205,7 +205,7 @@
     left: 12px;
     width: 25px;
     height: 19px;
-    background: url("../Login/img/arrow.png") 0 0 no-repeat;
+    background: url("/src/containers/Login/img/arrow.png") 0 0 no-repeat;
 }
 
 .body-form .text {
@@ -219,24 +219,10 @@
     opacity: 1;
 }
 
-@media screen and (max-width: 500px) {
-    .form-aunt {
-        width: 300px;
-    }
-    .login-submit {
-        right: -12px;
-    }
-    .login-submit::before {
-        height: 15px;
-    }
-    .body-form {
-        padding: 20px 25px;
-    }
-}
-
 .btn-close:hover {
     opacity: 1;
 }
+
 .btn-close {
     cursor: pointer;
     border: none;
@@ -252,7 +238,7 @@
     color: #FFF;
     text-align: center;
     opacity: .65;
-    background: url('/src/components/Login/img/close.svg') center center no-repeat;
+    background: url('/src/containers/Login/img/close.svg') center center no-repeat;
 }
 
 .is-open {
@@ -263,4 +249,19 @@
     transform-origin: 50% 50%;
     text-align: center;
     transform: rotateX(360deg);
+}
+
+@media screen and (max-width: 500px) {
+    .form-aunt {
+        width: 300px;
+    }
+    .login-submit {
+        right: -12px;
+    }
+    .login-submit::before {
+        height: 15px;
+    }
+    .body-form {
+        padding: 20px 25px;
+    }
 }

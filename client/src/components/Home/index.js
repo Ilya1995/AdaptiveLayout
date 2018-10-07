@@ -33,15 +33,17 @@ export default class Home extends Component {
         const elementRect = element.getBoundingClientRect();
         const absoluteElementTop = elementRect.top + window.pageYOffset;
         window.scrollTo({ top: absoluteElementTop-60, left: 0, behavior: 'smooth' });
-        document.getElementById('fp'+ this.numberCurrentBlock).checked = true;
+        document.getElementById('fp'+ this.numberCurrentBlock)['checked'] = true;
         let fpNav = document.getElementById('fp-nav');
-        fpNav.style.opacity = 0;
-        setTimeout(()=> fpNav.style.opacity = 1, 500);
+        fpNav.style.opacity = '0';
+        setTimeout(()=> fpNav.style.opacity = '1', 500);
         e.preventDefault ? e.preventDefault() : (e.returnValue = false);
     }
 
     onResize() {
         this.setState({windowHeight: document.documentElement.clientHeight});
+        this.transitionPage(1);
+        document.getElementById('fp1')['checked'] = true;
     }
 
     onScroll() {
@@ -61,6 +63,8 @@ export default class Home extends Component {
     componentDidMount() {
         let that = this;
         let elem = document.getElementById('main');
+        this.onScroll();
+        document.getElementById('fp'+ this.numberCurrentBlock)['checked'] = true;
         if (elem.addEventListener) {
             if ('onwheel' in document) {//подписываемся на мышиный скролл
                 // IE9+, FF17+, Ch31+
@@ -110,8 +114,8 @@ export default class Home extends Component {
         const absoluteElementTop = elementRect.top + window.pageYOffset;
         window.scrollTo({ top: absoluteElementTop-60, left: 0, behavior: 'smooth' });
         let fpNav = document.getElementById('fp-nav');
-        fpNav.style.opacity = 0;
-        setTimeout(()=> fpNav.style.opacity = 1, 500);
+        fpNav.style.opacity = '0';
+        setTimeout(()=> fpNav.style.opacity = '1', 500);
     }
 
     render() {
@@ -165,10 +169,10 @@ export default class Home extends Component {
                     {/*У footer data-selector="4"*/}
                 </div>
                 <div id="fp-nav" className="right fp-prev fp-next">
-                    <input defaultChecked type="radio" name="slider" id="fp1"/>
-                    <input type="radio" name="slider" id="fp2"/>
-                    <input type="radio" name="slider" id="fp3"/>
-                    <input type="radio" name="slider" id="fp4"/>
+                    <input defaultChecked type="radio" name="fp-nav-right" id="fp1"/>
+                    <input type="radio" name="fp-nav-right" id="fp2"/>
+                    <input type="radio" name="fp-nav-right" id="fp3"/>
+                    <input type="radio" name="fp-nav-right" id="fp4"/>
                     <div className="active-fp-nav">
                         <label onClick={this.transitionPage.bind(this,'1')} htmlFor="fp1"/>
                         <label onClick={this.transitionPage.bind(this,'2')} htmlFor="fp2"/>
