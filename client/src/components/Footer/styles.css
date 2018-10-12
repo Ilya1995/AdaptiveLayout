@@ -3,6 +3,8 @@
     padding: 40px 60px;
     color: #fff;
     font-size: 18px;
+    position: relative;
+    z-index: 201;
 }
 
 .footer-container {

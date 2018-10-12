@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import './styles.css'
+import _ from 'underscore'
 
 export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            windowHeight: 500
+            windowHeight: 500,
+            numberCurrentBlock: 1
         };
-        this.numberCurrentBlock  = 1;
         this.onWheel = this.onWheel.bind(this);
         this.onResize = this.onResize.bind(this);
-        this.onScroll = this.onScroll.bind(this);
     }
 
     onWheel(e) {
@@ -19,21 +19,24 @@ export default class Home extends Component {
         let kray = blocks[blocks.length-1].dataset.selector;
         e = e || window.event;
         let delta = e.deltaY;
+        let numberCurrentBlock = 1;
         if (delta > 0) {
-            if (kray != this.numberCurrentBlock) {
-                this.numberCurrentBlock++;
+            if (kray != this.state.numberCurrentBlock) {
+                numberCurrentBlock = +this.state.numberCurrentBlock + 1;
+                this.setState({numberCurrentBlock: numberCurrentBlock});
             }
         } else {
-            if (this.numberCurrentBlock > 1) {
-                this.numberCurrentBlock--;
+            if (this.state.numberCurrentBlock > 1) {
+                numberCurrentBlock = +this.state.numberCurrentBlock - 1;
+                this.setState({numberCurrentBlock: numberCurrentBlock});
             }
         }
-        let page = 'promo-page-' + this.numberCurrentBlock;
+        let page = 'promo-page-' + numberCurrentBlock;
         const element = document.getElementById(page);
         const elementRect = element.getBoundingClientRect();
         const absoluteElementTop = elementRect.top + window.pageYOffset;
         window.scrollTo({ top: absoluteElementTop-60, left: 0, behavior: 'smooth' });
-        document.getElementById('fp'+ this.numberCurrentBlock)['checked'] = true;
+        document.getElementById('fp'+ numberCurrentBlock)['checked'] = true;
         let fpNav = document.getElementById('fp-nav');
         fpNav.style.opacity = '0';
         setTimeout(()=> fpNav.style.opacity = '1', 500);
@@ -43,17 +46,6 @@ export default class Home extends Component {
     onResize() {
         this.setState({windowHeight: document.documentElement.clientHeight});
         this.transitionPage(1);
-        document.getElementById('fp1')['checked'] = true;
-    }
-
-    onScroll() {
-        let elem = document.getElementById('main');
-        let blocks = elem.querySelectorAll('.promo-page-multiple-block');
-        for (let i = 0; i < blocks.length; i++) {
-            if (blocks[i].getBoundingClientRect().top - 60 <= 0) {
-                this.numberCurrentBlock = blocks[i].dataset.selector;
-            }
-        }
     }
 
     componentWillMount() {
@@ -63,8 +55,13 @@ export default class Home extends Component {
     componentDidMount() {
         let that = this;
         let elem = document.getElementById('main');
-        this.onScroll();
-        document.getElementById('fp'+ this.numberCurrentBlock)['checked'] = true;
+        let blocks = elem.querySelectorAll('.promo-page-multiple-block');
+        let numberCurrentBlock = 1;
+        _.each(blocks, (block) => {
+            block.getBoundingClientRect().top - 60 <= 0 ? numberCurrentBlock = block.dataset.selector : null;
+        });
+        this.setState({numberCurrentBlock: numberCurrentBlock});
+        document.getElementById('fp'+ numberCurrentBlock)['checked'] = true;
         if (elem.addEventListener) {
             if ('onwheel' in document) {//подписываемся на мышиный скролл
                 // IE9+, FF17+, Ch31+
@@ -81,8 +78,6 @@ export default class Home extends Component {
         }
 
         window.addEventListener("resize", that.onResize);//подписываемся на изменение размера окна
-
-        window.addEventListener("scroll", that.onScroll);//подписываемся на каждый скролл
     }
 
     componentWillUnmount() {
@@ -103,8 +98,6 @@ export default class Home extends Component {
             elem.detachEvent("onmousewheel", that.onWheel);
         }
         window.removeEventListener('resize', that.onResize);
-        window.removeEventListener('scroll', that.onScroll);
-
     }
 
     transitionPage(e) {
@@ -116,6 +109,8 @@ export default class Home extends Component {
         let fpNav = document.getElementById('fp-nav');
         fpNav.style.opacity = '0';
         setTimeout(()=> fpNav.style.opacity = '1', 500);
+        document.getElementById('fp'+e)['checked'] = true;
+        this.setState({numberCurrentBlock: e});
     }
 
     render() {
@@ -125,7 +120,7 @@ export default class Home extends Component {
                 <div id="promo-page-container" className="promo-page-container promo-page-multiple-container" data-selector="promo-page-container">
                     <div id="promo-page-1" data-selector="1" style={{'height': this.state.windowHeight-60}} className='promo-page-block-one promo-page-multiple-block'>
 
-                        <div className='title'>Выбери лучшую машину по версии АВТОВАЗ</div>
+                        <div className={this.state.numberCurrentBlock == 1 ? 'title animated zoomIn':'title'}>Выбери лучшую машину по версии АВТОВАЗ</div>
 
                         <div className="slider">
                             <input defaultChecked type="radio" name="slider" id="switch1"/>
@@ -162,11 +157,39 @@ export default class Home extends Component {
 
                     <div id="promo-page-2" data-selector="2" style={{'height': this.state.windowHeight-60}} className='promo-page-block-two promo-page-multiple-block'>
 
+                        <div className="container-tariffs">
+                            <div className={this.state.numberCurrentBlock == 2 ? 'title animated zoomIn':'title'} style={{animationDelay: '100ms'}}>Тарифы</div>
+
+                            <div className="tariffs">
+                                <div className="tariff">
+                                    <div className="icon red"/>
+                                    <h3 className="red">Старт</h3>
+                                    <ul className="options">
+                                        <li>20 users</li>
+                                        <li>50 gb storage</li>
+                                        <li>unlimited data transfer</li>
+                                    </ul>
+                                    <div className="price-box">
+                                        <div className="price red">$199</div>
+                                        <div className="price-label">per month</div>
+                                    </div>
+                                    <a className="btn-tariff btn-red">Buy Now</a>
+                                </div>
+                                <div className="tariff"></div>
+                                <div className="tariff"></div>
+                            </div>
+                        </div>
+
                     </div>
                     <div id="promo-page-3" data-selector="3" style={{'height': this.state.windowHeight-60}} className='promo-page-block-three promo-page-multiple-block'>
 
                     </div>
                     {/*У footer data-selector="4"*/}
+                </div>
+                <div className="back-to-top-wrapper">
+                    <a className="back-to-top" title="Back to top" onClick={this.transitionPage.bind(this,'1')}>
+                        <img src="/src/components/Home/img/back.png"/>
+                    </a>
                 </div>
                 <div id="fp-nav" className="right fp-prev fp-next">
                     <input defaultChecked type="radio" name="fp-nav-right" id="fp1"/>
