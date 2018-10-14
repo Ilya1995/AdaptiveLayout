@@ -53,7 +53,8 @@
     "react-notifications": "1.4.3",
     "whatwg-fetch": "^3.0.0",
     "prop-types": "^15.6.2",
-    "react-redux-form": "^1.16.10"
+    "react-redux-form": "^1.16.10",
+    "underscore": "^1.9.1"
   },
   "dependencies": {
     "jquery": "^3.3.1",
