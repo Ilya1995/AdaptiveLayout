@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import * as userActions from "../../actions/UserActions";
@@ -7,7 +8,6 @@ import { LocalForm, Control, Errors } from 'react-redux-form';
 import { NotificationManager } from 'react-notifications';
 import Loading from "../../components/Preloader";
 import './styles.css'
-import user from "../../reducers/user";
 
 const isRequired = (val) => val && val.length > 0;
 const minLength = (num, val) => !val || val && val.length >= num;
@@ -23,6 +23,10 @@ class Login extends Component {
             comand: true
         };
     }
+
+    static contextTypes = {
+        router: PropTypes.object
+    };
 
     regOrAunt() {
         let title = document.getElementById('title-form');
@@ -56,9 +60,9 @@ class Login extends Component {
                 NotificationManager.error('Пароли не совпадают', 'Ошибка', 5000);
                 return;
             }
-            this.props.userActions.registration(val);
+            this.props.userActions.registration(val, this.context.router);
         } else {
-            this.props.userActions.authentication(val);
+            this.props.userActions.authentication(val, this.context.router);
         }
 
     }

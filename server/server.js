@@ -17,12 +17,12 @@ app.use(function (req, res, next) {
     next();
 });
 moduleHandler.runModules();
-setTimeout(function () {
-    moduleHandler.modules['clients'].execFunc('registration', {data: 256}, function (result, data) {
-        console.log(result);
-        console.log(data);
-    });
-}, 4000);
+// setTimeout(function () {
+//     moduleHandler.modules['clients'].execFunc('registration', {data: 256}, function (result, data) {
+//         console.log(result);
+//         console.log(data);
+//     });
+// }, 4000);
 
 app.listen(app.get('port'), function (err) {
     if (err) {
@@ -30,4 +30,13 @@ app.listen(app.get('port'), function (err) {
     } else {
         console.info('Сервер запущен на порту ' + app.get('port'));
     }
+});
+
+app.all('/api/*', function (req, res) {
+    var routes = req.url.split('/').filter(Boolean);
+    moduleHandler.modules[routes[1]].execFunc(routes[2], req.body, function (result, data) {
+        console.log(result);
+        console.log(data);
+        res.send({result: result, data: data});
+    });
 });

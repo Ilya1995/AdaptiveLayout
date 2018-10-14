@@ -12,11 +12,11 @@ import { NotificationManager } from 'react-notifications';
 /**
  * Аутентификация
  */
-export const authentication = (data) => {
+export const authentication = (data, router) => {
     console.log(data);
     return (dispatch) => {
         dispatch(requestAuthentication({preloader: true}));
-        fetch('/api/authentication', {
+        fetch('/api/clients/authentication', {
             method: 'post',
             credentials: 'same-origin',
             headers: {
@@ -28,12 +28,20 @@ export const authentication = (data) => {
             .then(json => {
                 console.log(json);
                 if (json.result) {
-                    json.data.preloader = false;
-                    dispatch(authenticationSuccess(json.data));
+                    if (json.data.result) {
+                        json.data.data.preloader = false;
+                        dispatch(authenticationSuccess(json.data.data));
+                        console.log(router);
+                        router.history.push('/');
+                    } else {
+                        NotificationManager.error(json.data.note, 'Ошибка авторицаии', 5000);
+                        dispatch(authenticationFail({preloader: false}));
+                    }
                 } else {
-                    NotificationManager.error(json.note, 'Ошибка авторицаии', 5000);
+                    NotificationManager.error('Функция авторизации не доступна', 'Ошибка', 5000);
                     dispatch(authenticationFail({preloader: false}));
                 }
+
             })
             .catch(err => {
                 NotificationManager.error('Попробуй позже', 'Ошибка авторицаии', 5000);
@@ -46,11 +54,11 @@ export const authentication = (data) => {
 /**
  * Регистрация
  */
-export const registration = (data) => {
+export const registration = (data, router) => {
     console.log(data);
     return (dispatch) => {
         dispatch(requestRegistration({preloader: true}));
-        fetch('/api/registration', {
+        fetch('/api/clients/registration', {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'
@@ -61,11 +69,17 @@ export const registration = (data) => {
             .then(json => {
                 console.log(json);
                 if (json.result) {
-                    dispatch(registrationSuccess({preloader: true}));
-                    NotificationManager.info('Регистрация прошла успешно', 'Регистрация', 5000);
+                    if (json.data.result) {
+                        dispatch(registrationSuccess({preloader: false}));
+                        NotificationManager.info('Регистрация прошла успешно', 'Регистрация', 5000);
+                        router.history.push('/');
+                    } else {
+                        dispatch(registrationFail({preloader: false}));
+                        NotificationManager.error(json.data.note, 'Регистрация', 5000);
+                    }
                 } else {
+                    NotificationManager.error('Функция регистрации не доступна', 'Ошибка', 5000);
                     dispatch(registrationFail({preloader: false}));
-                    NotificationManager.error(json.note, 'Регистрация', 5000);
                 }
             })
             .catch(err => {

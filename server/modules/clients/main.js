@@ -38,7 +38,7 @@ CLIENTS.prototype.init = function () {
  * @param data.password
  * @param callback
  */
-CLIENTS.prototype.authorization = function (data, callback) {
+CLIENTS.prototype.authentication = function (data, callback) {
     console.log(data);
     if (!data.login || !data.password) {
         return callback('Не указаны данные для авторизации');
@@ -46,14 +46,16 @@ CLIENTS.prototype.authorization = function (data, callback) {
     var connection = mysql.createConnection(this.config.database.connection);
     async.waterfall([
         function (callback) {
-            var hashedPassword = passwordHash.generate(data.password, {algorithm: 'sha256'});
-            var sql = "select clients.id from clients where login = ? and password = ?";
-            connection.query(sql, [data.login, hashedPassword], function (err, rows) {
+            var sql = "select clients.id, clients.password from clients where login = ?";
+            connection.query(sql, [data.login], function (err, rows) {
                 if (err) {
                     console.error(err.message);
                     return callback('Ошибка авторизации');
                 }
-                if (rows.length === 0) return callback('Данный пользователь не зарегистрирован');
+                if (rows.length === 0 || !passwordHash.verify(data.password, rows[0].password)){
+                    return callback('Данный пользователь не зарегистрирован');
+                }
+
                 return callback(null, rows[0].id);
             });
         },
@@ -70,9 +72,9 @@ CLIENTS.prototype.authorization = function (data, callback) {
     ], function (err, data) {
         connection.destroy();
         if (err) {
-            return callback(err);
+            return callback({result: false, note: err});
         }
-        return callback(null, data);
+        return callback({result: true, data: data});
     });
 };
 
@@ -96,7 +98,7 @@ CLIENTS.prototype.registration = function (data, callback) {
         function (callback) {
             var sql = "SELECT id FROM clients WHERE login = ?";
             connection.query(sql, [data.login], function (err, res) {
-                if (res.rows.length) return callback('Пользователь с таким логином уже зарегистрирован');
+                if (res && res.rows && res.rows.length) return callback('Пользователь с таким логином уже зарегистрирован');
                 if (err) {
                     console.error(err.message);
                     return callback('Ошибка регистрации');
@@ -110,7 +112,7 @@ CLIENTS.prototype.registration = function (data, callback) {
                     console.error(err, ' Ошибка при начале транзакции');
                     return callback('Ошибка регистрации');
                 }
-                var hashedPassword = passwordHash.generate(data.password, {algorithm: 'sha256'});
+                var hashedPassword = passwordHash.generate(data.password);
                 var sql = "INSERT INTO clients (login, password, email) values(?, ?, ?)";
                 connection.query(sql, [data.login, hashedPassword, data.email], function (err) {
                     if (err) {
@@ -153,18 +155,18 @@ CLIENTS.prototype.registration = function (data, callback) {
             console.error(err);
             return connection.rollback(function () {
                 connection.destroy();
-                return callback(err);
+                return callback({result: false, note: err});
             });
         }
         connection.commit(function (cmError) {
             if (cmError) {
                 return connection.rollback(function () {
                     connection.destroy();
-                    return callback('Ошибка регистрации');
+                    return callback({result: false, note: 'Ошибка регистрации'});
                 });
             }
             connection.destroy();
-            return callback(null);
+            return callback({result: true, data: null});
         });
     });
 };

@@ -1,6 +1,12 @@
 const http = require('http');
+const httpProxy = require('http-proxy');
 const express = require('express');
 const app = express();
+const proxy = new httpProxy.createProxyServer({
+    target: {
+        port: 3550
+    }
+});
 
 (function initWebpack() {
     const webpack = require('webpack');
@@ -20,12 +26,19 @@ const app = express();
 
 
 const server = http.createServer(app);
-server.listen(process.env.PORT || 3000, function onListen() {
+server.listen(process.env.PORT || 3000, () => {
     const address = server.address();
     console.log('Listening on: %j', address);
     console.log(' -> that probably means: http://localhost:%d', address.port);
 });
 
-app.get('*', function (req, res) {
+app.all('/api/*', (req, res) => {
+    proxy.web(req, res);
+    proxy.on('error', (err) => {
+        console.error('Error httpProxy: ' + err);
+    });
+});
+
+app.get('*', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });

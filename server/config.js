@@ -7,7 +7,7 @@ var config = {
         connection: {
             host: '127.0.0.1',          //хост с базами данных
             user: 'root',               //учетка на сервере БД
-            database: 'myDatabase',     //имя БД
+            database: 'myDatabaseShop',     //имя БД
             password: '7991',           //пароль к БД
             insecureAuth: true,         //разрешение подключения без SSL
             multipleStatements: true    //разрешение передачи нескольких запросов в одном, разделенных знаком ";"
