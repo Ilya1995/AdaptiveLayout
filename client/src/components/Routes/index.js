@@ -1,7 +1,6 @@
 import 'babel-polyfill'
 import React, {Component} from 'react'
 import App from '../../containers/App'
-import Admin from '../Admin'
 import Login from '../../containers/Login'
 import Home from '../Home'
 import NotFound from '../NotFound'
@@ -18,7 +17,6 @@ export default class Routes extends Component {
                         <Switch>
                             <Route exact path='/' component={Home} />
                             <Route exact path='/login' component={Login} />
-                            <Route exact path='/admin' component={Admin} />
                             <Route component={NotFound}/>
                         </Switch>
                     </App>

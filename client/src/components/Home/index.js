@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Price from '../../components/Price'
 import './styles.css'
 import _ from 'underscore'
 
@@ -7,6 +8,7 @@ export default class Home extends Component {
         super(props);
         this.state = {
             windowHeight: 500,
+            windowWidth: 500,
             numberCurrentBlock: 1
         };
         this.onWheel = this.onWheel.bind(this);
@@ -44,12 +46,11 @@ export default class Home extends Component {
     }
 
     onResize() {
-        this.setState({windowHeight: document.documentElement.clientHeight});
-        this.transitionPage(1);
+        this.setState({windowHeight: document.documentElement.clientHeight, windowWidth: document.documentElement.clientWidth});
     }
 
     componentWillMount() {
-        this.setState({windowHeight: document.documentElement.clientHeight});
+        this.setState({windowHeight: document.documentElement.clientHeight, windowWidth: document.documentElement.clientWidth});
     }
 
     componentDidMount() {
@@ -122,7 +123,7 @@ export default class Home extends Component {
 
                         <div className={this.state.numberCurrentBlock == 1 ? 'title animated zoomIn':'title'}>Выбери лучшую машину по версии АВТОВАЗ</div>
 
-                        <div className="slider">
+                        <div className={this.state.numberCurrentBlock == 1 ? 'slider animated fadeIn':'slider'}>
                             <input defaultChecked type="radio" name="slider" id="switch1"/>
                             <input type="radio" name="slider" id="switch2"/>
                             <input type="radio" name="slider" id="switch3"/>
@@ -157,28 +158,7 @@ export default class Home extends Component {
 
                     <div id="promo-page-2" data-selector="2" style={{'height': this.state.windowHeight-60}} className='promo-page-block-two promo-page-multiple-block'>
 
-                        <div className="container-tariffs">
-                            <div className={this.state.numberCurrentBlock == 2 ? 'title animated zoomIn':'title'} style={{animationDelay: '100ms'}}>Тарифы</div>
-
-                            <div className="tariffs">
-                                <div className="tariff">
-                                    <div className="icon red"/>
-                                    <h3 className="red">Старт</h3>
-                                    <ul className="options">
-                                        <li>20 users</li>
-                                        <li>50 gb storage</li>
-                                        <li>unlimited data transfer</li>
-                                    </ul>
-                                    <div className="price-box">
-                                        <div className="price red">$199</div>
-                                        <div className="price-label">per month</div>
-                                    </div>
-                                    <a className="btn-tariff btn-red">Buy Now</a>
-                                </div>
-                                <div className="tariff"></div>
-                                <div className="tariff"></div>
-                            </div>
-                        </div>
+                        <Price animate={this.state.numberCurrentBlock == 2}/>
 
                     </div>
                     <div id="promo-page-3" data-selector="3" style={{'height': this.state.windowHeight-60}} className='promo-page-block-three promo-page-multiple-block'>

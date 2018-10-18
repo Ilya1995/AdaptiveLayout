@@ -5,6 +5,54 @@ body {
 }
 
 html { overflow-y: hidden; }
+@media screen and (max-width: 800px) {
+    html { overflow-y: visible; }
+}
+
+.red {
+    color: #d73e4d;
+}
+
+.btn-red {
+    background-color: #d73e4d;
+    border-color: #d73e4d;
+}
+
+.btn-red:hover {
+    background-color: rgba(215, 62, 77, 0.9);
+    border-color: rgba(215, 62, 77, 0.9);
+    border-bottom: 0 solid rgba(215, 62, 77, 0.5);
+}
+
+.yellow {
+    color: #d6973d;
+}
+
+.btn-yellow {
+    background-color: #d6973d;
+    border-color: #d6973d;
+}
+
+.btn-yellow:hover {
+    background-color: rgba(214, 151, 61, 0.9);
+    border-color: rgba(214, 151, 61, 0.9);
+    border-bottom: 0 solid rgba(214, 151, 61, 0.5);
+}
+
+.green {
+    color: #179680;
+}
+
+.btn-green {
+    background-color: #179680;
+    border-color: #179680;
+}
+
+.btn-green:hover {
+    background-color: rgba(23, 150, 128, 0.9);
+    border-color: rgba(23, 150, 128, 0.9);
+    border-bottom: 0 solid rgba(23, 150, 128, 0.5);
+}
 
 .error {
     color: #FF392B;

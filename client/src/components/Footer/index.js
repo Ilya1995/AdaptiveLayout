@@ -11,9 +11,9 @@ export default class Footer extends Component {
         return (
             <div id="promo-page-4" className='footer promo-page-multiple-block' data-selector="4">
                 <div className='footer-container'>
-                    <div className="col-12 col-md-4">Copyright © 2018 Ilya Kovalev</div>
-                    <div className="col-12 col-md-4">Privacy | Terms of Use | Site Map</div>
-                    <div className="col-12 col-md-4">
+                    <div>Copyright © 2018 Ilya Kovalev</div>
+                    <div>Privacy | Terms of Use | Site Map</div>
+                    <div>
                         <a href='https://vk.com/kaizerrus' className='social-vk'/>
                         <a className='social-fb'/>
                         <a className='social-tw'/>

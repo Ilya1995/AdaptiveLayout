@@ -5,6 +5,7 @@
     -o-background-size: 100%; /* Opera 9.6+ */
     background-size: cover;
     position: relative;
+    overflow-y: auto;
     z-index: 201;
 }
 
@@ -14,6 +15,8 @@
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
     -o-background-size: 100%; /* Opera 9.6+ */
     background-size: cover;
+    position: relative;
+    overflow-y: auto;
 }
 
 #promo-page-3 {
@@ -61,7 +64,6 @@
 
 .image img {
     width: 100%;
-    height: 100px;
 }
 
 #switch1:checked ~ .controls label:nth-child(5),
@@ -244,36 +246,6 @@ label, a {
     display: none;
 }
 
-@media screen and (max-width: 800px) {
-    .slider {
-        max-width: 400px;
-        padding: 30px 0;
-    }
-    .promo-page-main .title {
-        font-size: 28px;
-    }
-
-    #fp-nav {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .promo-page-main .title {
-        font-size: 22px;
-    }
-    .slider {
-        max-width: 100%;
-        padding: 25px;
-    }
-    .controls {
-        display: none;
-    }
-    .active {
-        margin: 3% 0 0;
-    }
-}
-
 .back-to-top-wrapper {
     width: 50px;
     height: 50px;
@@ -337,112 +309,36 @@ a.back-to-top:focus, a.back-to-top:hover {
     opacity: 1;
 }
 
-.container-tariffs {
-    padding: 0 50px;
+@media screen and (max-width: 800px) {
+    .slider {
+        max-width: 400px;
+        padding: 30px 0;
+    }
+    .promo-page-main .title {
+        font-size: 28px;
+    }
+
+    #fp-nav {
+        display: none;
+    }
+
+    .back-to-top-wrapper {
+        display: none;
+    }
 }
 
-.tariffs {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.tariff {
-    width: 300px;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 3px;
-    color: #777;
-    line-height: 1.5;
-    margin: 0 auto 30px;
-    padding: 16px 0 30px;
-    text-align: center;
-}
-
-.red {
-   color: #d73e4d;
-}
-
-.tariff .icon::before {
-    font-family: "Font Awesome 5 Pro";
-    content: "\f0b1";
-    font-size: 58px;
-}
-
-.tariffs .options {
-    border-top: 1px solid #777;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    list-style: none;
-    margin: 0 0 26px;
-    padding: 0;
-}
-
-.tariffs .options li {
-    border-bottom: 1px solid #777;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 14px 0 14px;
-}
-
-.price {
-    font-size: 35px;
-}
-
-.tariffs .price-box {
-    border-bottom: 1px solid #777;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    line-height: 1;
-    padding: 0 0 30px;
-}
-
-.tariffs .price-box .price-label {
-    color: #999;
-    font-size: .85em;
-    font-weight: 500;
-}
-
-.tariffs .btn-tariff {
-    color: #fff;
-    margin: 29px auto 0;
-    border-radius: 2px;
-    display: inline-block;
-    font-size: 1.13em;
-    line-height: 1.45;
-    letter-spacing: .1em;
-    overflow: hidden;
-    padding: 6px 30px;
-    position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
-    -webkit-transition: background 0.2s ease-in-out;
-    transition: background 0.2s ease-in-out;
-    white-space: normal;
-}
-
-.tariffs .btn-tariff::before {
-    border-top: 500px solid rgba(0, 0, 0, 0.05);
-    border-right: 500px solid transparent;
-    content: "";
-    display: block;
-    height: 0;
-    left: 72%;
-    margin: -1px 0 0 -500px;
-    position: absolute;
-    top: 0;
-    width: 0;
-    -webkit-transition: left 0.2s ease-in-out;
-    transition: left 0.2s ease-in-out;
-}
-
-.btn-tariff:hover::before {
-    left: 63%;
-}
-
-.btn-red {
-    background-color: #d73e4d;
-    border-color: #d73e4d;
-}
-
-.btn-red:hover {
-    background-color: rgba(215, 62, 77, 0.9);
-    border-color: rgba(215, 62, 77, 0.9);
-    border-bottom: 0 solid rgba(215, 62, 77, 0.5);
+@media screen and (max-width: 500px) {
+    .promo-page-main .title {
+        font-size: 22px;
+    }
+    .slider {
+        max-width: 100%;
+        padding: 25px;
+    }
+    .controls {
+        display: none;
+    }
+    .active {
+        margin: 3% 0 0;
+    }
 }
